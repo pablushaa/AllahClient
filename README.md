@@ -15,7 +15,7 @@
 - AutoArmor
 - FastPlace
 - ClickGui
-- KillAura
+- KillAura (настраиваемая)
 - Velocity
 - Spammer (настраиваемый)
 - Portals
@@ -24,7 +24,7 @@
 - Speed
 - SWAT
 - NoFall
-- Fly
+- Fly (настраиваемый)
 - RPC
 - HUD
 - Up
