@@ -16,31 +16,37 @@ public class ModuleLoader {
 	public void loadModules() {
 
 		this.addModule(new NoPotionRender());
+		this.addModule(new InventoryMove());
 		this.addModule(new NoScoreBoard());
-		this.addModule(new AntiOverlay());
 		this.addModule(new CrystalAura());
 		this.addModule(new StorageESP());
+		this.addModule(new AntiOverlay());
 		this.addModule(new NoSlowdown());
-		this.addModule(new NoWeather());
-		this.addModule(new PlayerESP());
-		this.addModule(new TargetHUD());
-		this.addModule(new AutoTotem());
 		this.addModule(new AutoArmor());
+		this.addModule(new TriggerBot());
+		this.addModule(new StashFinder());
+		this.addModule(new AutoTotem());
+		this.addModule(new NoWeather());
+		this.addModule(new TargetHUD());
+		this.addModule(new PlayerESP());
 		this.addModule(new FastPlace());
-		this.addModule(new ClickGui());
-		this.addModule(new KillAura());
-		this.addModule(new Velocity());
+		this.addModule(new ViewModel());
+		this.addModule(new AirJump());
 		this.addModule(new Spammer());
+		this.addModule(new Criticals());
+		this.addModule(new Velocity());
+		this.addModule(new KillAura());
 		this.addModule(new Portals());
-		this.addModule(new Noclip());
-		this.addModule(new Light());
-		this.addModule(new Speed());
-		this.addModule(new SWAT());
 		this.addModule(new NoFall());
-		this.addModule(new Fly());
+		this.addModule(new Speed());
+		this.addModule(new Bhop());
+		this.addModule(new Light());
 		this.addModule(new RPC());
 		this.addModule(new HUD());
-		this.addModule(new Up());
+		this.addModule(new Fly());
+		//
+		this.addModule(new ClickGui());
+		this.addModule(new SWAT());
 	}
 	
 	public void addModule(Module m) {

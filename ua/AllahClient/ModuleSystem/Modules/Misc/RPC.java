@@ -4,7 +4,6 @@ import club.minnced.discord.rpc.*;
 import net.minecraft.client.Minecraft;
 import ua.AllahClient.ModuleSystem.Category;
 import ua.AllahClient.ModuleSystem.Module;
-import viamcp.ViaMCP;
 
 public class RPC extends Module {
 

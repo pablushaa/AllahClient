@@ -3,8 +3,10 @@ package ua.AllahClient;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import ua.AllahClient.ModuleSystem.Modules.Combat.KillAura;
 import ua.AllahClient.ModuleSystem.Modules.Misc.Spammer;
+import ua.AllahClient.ModuleSystem.Modules.Render.PlayerESP;
 import ua.AllahClient.ModuleSystem.Modules.movement.Fly;
 import ua.AllahClient.util.ChatUtil;
 
@@ -16,12 +18,14 @@ public class CommandManager {
 			ChatUtil.sendClientMessage("spammer: time, text");
 			ChatUtil.sendClientMessage("fly: speed");
 			ChatUtil.sendClientMessage("killaura: range, clientrot [bool], hitbox [bool] (works only in client rotations)");
+			ChatUtil.sendClientMessage("playersp: mode (boxed, glow)");
 			return;
 		}
 		if(c.startsWith("#help")) {
 			ChatUtil.sendClientMessage("#help set - shows the modules and their settings");
 			ChatUtil.sendClientMessage("#set - sets the value of module");
 			ChatUtil.sendClientMessage("#info (moduleName) - shows module settings");
+			ChatUtil.sendClientMessage("#move x, y, z - moves you in position");
 		}
 		
 		
@@ -59,6 +63,11 @@ public class CommandManager {
 			}
 		}
 		
+		if(c.startsWith("#set playeresp mode ")) {
+			PlayerESP.mode = c.replace("#set playeresp mode ", "");
+			ChatUtil.sendClientMessage("Succesfully set playeresp mode to " + c.replace("#set playeresp mode ", ""));
+		}
+		
 		if(c.startsWith("#info spammer")) {
 			ChatUtil.sendClientMessage("Time: " + Float.toString(Spammer.time));
 			ChatUtil.sendClientMessage("Text: " + Spammer.text);
@@ -72,6 +81,18 @@ public class CommandManager {
 			ChatUtil.sendClientMessage("Range: " + Float.toString(KillAura.range));
 			ChatUtil.sendClientMessage("Client rotations: " + Boolean.toString(KillAura.clientrot));
 			ChatUtil.sendClientMessage("Hitbox mode: " + Boolean.toString(KillAura.hitbox));
+		}
+		if(c.startsWith("#info playeresp")) {
+			ChatUtil.sendClientMessage("Mode: " + PlayerESP.mode);
+		}
+		
+		if(c.startsWith("#move")) {
+			try {
+				String[] coords = c.replace("#move ", "").split(" ");
+				mc.player.setPosition(mc.player.posX + Float.parseFloat(coords[0]), mc.player.posY + Float.parseFloat(coords[1]), mc.player.posZ + Float.parseFloat(coords[2]));
+			} catch (Exception e) {
+				ChatUtil.sendClientMessage("OTVAL");
+			}
 		}
 	}
 }

@@ -41,16 +41,23 @@ public class KillAura extends Module {
                 
                 if (clientrot) {
                     if (objectMouseOver.typeOfHit == RayTraceResult.Type.ENTITY && objectMouseOver != null && hitbox) {
-                        mc.playerController.attackEntity(mc.player, target);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.resetCooldown();
+                    	if(Criticals.mod.enabled) {
+    						Criticals.mod.doCrit();
+    					}
+                        mc.clickMouse();
                     } else if (!hitbox) {
+                    	if(Criticals.mod.enabled) {
+    						Criticals.mod.doCrit();
+    					}
                     	mc.playerController.attackEntity(mc.player, target);
                         mc.player.swingArm(EnumHand.MAIN_HAND);
                         mc.player.resetCooldown();
                     }
                 }
                 if(!clientrot) {
+                	if(Criticals.mod.enabled) {
+						Criticals.mod.doCrit();
+					}
                 	mc.playerController.attackEntity(mc.player, target);
                     mc.player.swingArm(EnumHand.MAIN_HAND);
                     mc.player.resetCooldown();

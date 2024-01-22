@@ -34,6 +34,7 @@ public class FileManager {
 			for(Module m : Client.loader.getModules()) {
 				JsonObject jsonMod = new JsonObject();
 				jsonMod.addProperty("enabled", m.isEnabled());
+				jsonMod.addProperty("bind", m.getBind());
 				json.add(m.getName(), jsonMod);
 			}
 			
@@ -70,6 +71,9 @@ public class FileManager {
 				if(m != null) {
 					JsonObject jsonMod = (JsonObject)entry.getValue();
 					boolean enabled = jsonMod.get("enabled").getAsBoolean();
+					int bind = jsonMod.get("bind").getAsInt();
+					
+					m.setKey(bind);
 					if(enabled) {
 						m.setToggled(true);
 					}

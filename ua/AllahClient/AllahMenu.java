@@ -4,12 +4,14 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import viamcp.gui.GuiProtocolSelector;
 
 import java.awt.*;
 import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
+
+import de.florianmichael.viamcp.ViaMCP;
+import de.florianmichael.viamcp.gui.GuiProtocolSelector;
 
 public class AllahMenu extends GuiScreen {
     public AllahMenu() {
@@ -48,7 +50,7 @@ public class AllahMenu extends GuiScreen {
 
         this.drawGradientRect(0, height - 100, width, height, 0x00000000, 0xff000000);
 
-        String[] buttons = {"Singleplayer", "Multiplayer", "Settings", "Author", "Version", "Quit"};
+        String[] buttons = {"Singleplayer", "Multiplayer", "Settings", "Author", "Quit"};
 
         int count = 0;
         for (String name : buttons) {
@@ -71,7 +73,7 @@ public class AllahMenu extends GuiScreen {
     }
 
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        String[] buttons = {"Singleplayer", "Multiplayer", "Settings", "Author", "Version", "Quit"};
+        String[] buttons = {"Singleplayer", "Multiplayer", "Settings", "Author", "Quit"};
 
         int count = 0;
         for (String name : buttons) {
@@ -99,9 +101,6 @@ public class AllahMenu extends GuiScreen {
                         break;
                     case "Settings":
                         mc.displayGuiScreen(new GuiOptions(this, mc.gameSettings));
-                        break;
-                    case "Version":
-                    	mc.displayGuiScreen(new GuiProtocolSelector(this));
                         break;
                     case "Quit":
                         mc.shutdown();

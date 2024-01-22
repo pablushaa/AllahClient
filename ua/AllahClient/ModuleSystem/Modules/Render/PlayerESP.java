@@ -12,14 +12,51 @@ public class PlayerESP extends Module {
 	Minecraft mc = Minecraft.getMinecraft();
 	AxisAlignedBB box = null;
 	
+	public static String mode = "boxed";
+	
 	public PlayerESP() {
 		super("PlayerESP", 0x00, Category.Render);
 	}
 	
-	public void onRender2D() {
+	public void onRender() {
         for (Entity entity : mc.world.playerEntities) {
             if(entity != mc.player && entity != null) {
-                entity.setGlowing(true);
+            	if(mode == "boxed") {
+            		box = new AxisAlignedBB(entity.getEntityBoundingBox().minX
+                            - 0.05
+                            - entity.posX
+                            + ((float) ((double) ((float) entity.lastTickPosX) + (entity.posX - entity.lastTickPosX) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
+                            .getRenderManager().viewerPosX),
+                            entity.getEntityBoundingBox().minY
+                                    - entity.posY
+                                    + ((float) ((double) ((float) entity.lastTickPosY) + (entity.posY - entity.lastTickPosY) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
+                                    .getRenderManager().viewerPosY),
+                            entity.getEntityBoundingBox().minZ
+                                    - 0.05
+                                    - entity.posZ
+                                    + ((float) ((double) ((float) entity.lastTickPosZ) + (entity.posZ - entity.lastTickPosZ) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
+                                    .getRenderManager().viewerPosZ),
+                            entity.getEntityBoundingBox().maxX
+                                    + 0.05
+                                    - entity.posX
+                                    + ((float) ((double) ((float) entity.lastTickPosX) + (entity.posX - entity.lastTickPosX) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
+                                    .getRenderManager().viewerPosX),
+                            entity.getEntityBoundingBox().maxY
+                                    + 0.1
+                                    - entity.posY
+                                    + ((float) ((double) ((float) entity.lastTickPosY) + (entity.posY - entity.lastTickPosY) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
+                                    .getRenderManager().viewerPosY),
+                            entity.getEntityBoundingBox().maxZ
+                                    + 0.05
+                                    - entity.posZ
+                                    + ((float) ((double) ((float) entity.lastTickPosZ) + (entity.posZ - entity.lastTickPosZ) * Minecraft.getMinecraft().getRenderPartialTicks()) - Minecraft.getMinecraft()
+                                    .getRenderManager().viewerPosZ));
+
+                    RenderUtil.FillLine(entity, box);
+            	}
+            	if(mode == "glow") {
+                    entity.setGlowing(true);
+            	}
             }
         }
     }

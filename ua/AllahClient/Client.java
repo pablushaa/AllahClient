@@ -1,5 +1,6 @@
 package ua.AllahClient;
 
+import de.florianmichael.viamcp.ViaMCP;
 import net.minecraft.client.Minecraft;
 import ua.AllahClient.ModuleSystem.Module;
 import ua.AllahClient.ModuleSystem.ModuleLoader;
@@ -7,12 +8,11 @@ import ua.AllahClient.ModuleSystem.Modules.Misc.RPC;
 import ua.AllahClient.ModuleSystem.Modules.Misc.SWAT;
 import ua.AllahClient.ModuleSystem.Modules.Render.HUD;
 import ua.AllahClient.util.FileManager;
-import viamcp.ViaMCP;
 
 public class Client {
 
-	public static String name = "AllahClient v1.0";
-	public static String version = "1.0";
+	public static String name = "AllahClient v1.1";
+	public static String version = "1.1";
 	public static ModuleLoader loader;
 	public static Minecraft mc;
 	public static FileManager fileMgr;
@@ -25,7 +25,8 @@ public class Client {
 		fileMgr.init();
 		System.out.println("[AllahClient] Activated!");
 		HUD.mod.setToggled(true);
-		ViaMCP.getInstance().start();
+		ViaMCP.create();
+		ViaMCP.INSTANCE.initAsyncSlider();
 	}
 	
 	public static void stop() {
